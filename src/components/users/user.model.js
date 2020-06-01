@@ -64,7 +64,7 @@ schema.methods.toJSON = function () {
 
 schema.methods.generateJWT = function () {
 	const user = this;
-	const token = jwt.sign({ id: user._id.toString() }, 'secret');
+	const token = jwt.sign({ id: user._id.toString() }, process.env.JWT_SECRET);
 	user.tokens = user.tokens.concat({ token });
 	user.save();
 	return token;

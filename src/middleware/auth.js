@@ -18,7 +18,7 @@ const auth = async (req, res, next) => {
 			return res.status(401).send({ error: 'Please authenticate' });
 		}
 
-		const decoded = jwt.verify(token, 'secret');
+		const decoded = jwt.verify(token, process.env.JWT_SECRET);
 		// if don't save token on database, using findById to get user
 		const user = await User.findOne({
 			_id: decoded.id,
