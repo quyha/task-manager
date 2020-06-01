@@ -40,6 +40,9 @@ const schema = new mongoose.Schema(
 				},
 			},
 		],
+		avatar: {
+			type: Buffer,
+		},
 	},
 	{ timestamps: true }
 );
