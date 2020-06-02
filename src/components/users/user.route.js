@@ -3,7 +3,7 @@ const multer = require('multer');
 const router = new express.Router();
 const User = require('../users/user.model');
 const auth = require('../../middleware/auth');
-// const { sendWelcomeEmail } = require('../../emails/account');
+const { sendWelcomeEmail } = require('../../emails/account');
 
 router.post('/login', async (req, res) => {
 	try {
@@ -49,7 +49,7 @@ router.post('/', async (req, res) => {
 		const user = new User(req.body);
 		await user.save();
 
-		// sendWelcomeEmail(user.email);
+		sendWelcomeEmail(user.email);
 
 		const token = user.generateJWT();
 		return res.send({ user, token });
